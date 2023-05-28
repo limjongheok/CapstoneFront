@@ -1,21 +1,16 @@
 import React from 'react'
 import "./App.css"
-import Grid from '@mui/material/Grid';
-import Signin from './pages/Signin.js'
-import Signup from './pages/Signup.js';
-import Emailauthrequ from './pages/EmailAuthrequ.js';
-import Emailauthnum from './pages/EmailAuthnum.js';
-import Footer from './headfoot/footer.js';
+import UserRouter from './UserRouter'; 
+
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <Grid container justifyContent = "center" height="100vh" flexDirection="column">
-    {/* <Signin/> */}
-    {/* <Signup/> */}
-    {/* <Emailauthrequ/> */}
-    {/* <Emailauthnum/> */}
-    <Footer/>
-    </Grid>
+    <BrowserRouter>
+      {/* <TopHeaderNavigator cart={cart}/> */}
+      <UserRouter/>
+     
+    </BrowserRouter>
   );
 }
 

@@ -4,9 +4,22 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { emailAuth } from '../../../api/ApiService';
 
-const Emailauthrequ=()=>{
+const EmailAuthrequFunction=()=>{
+
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const email = data.get("email");
+  
+    // ApiService의 signin 메서드를 사용 해 로그인.
+    emailAuth({ email: email});
+  };
 	return(
+    <div id="EmailAuthrequFunction">
+      <form onSubmit={handleSubmit}>
 		<Container component="main" maxWidth="sm">
       <Box
           sx={{
@@ -27,7 +40,7 @@ const Emailauthrequ=()=>{
               margin: "0 auto"
             }}>
 		<TextField 
-        id="standard-email-input"
+        id="email"
         sx={{mb:"24px"}}
         label="학교 이메일" 
         required 
@@ -44,7 +57,9 @@ const Emailauthrequ=()=>{
       </Button>
       </Box>
 		</Container>
+    </form>
+    </div>
 	)
 }
 
-export default Emailauthrequ
+export default EmailAuthrequFunction;

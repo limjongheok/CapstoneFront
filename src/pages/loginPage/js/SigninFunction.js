@@ -11,18 +11,34 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
+import { signin } from '../../../api/ApiService';
+import "../css/SigninPage.css"
 
-const Signin=()=>{
+
+
+const SigninFunction=()=>{
+
+
+
+
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const email = data.get("email");
+    const password = data.get("password");
+    // ApiService의 signin 메서드를 사용 해 로그인.
+    signin({ email: email, password: password });
+  };
+
+
 	return(
+    <div id='signinFunction'>
+
+
+    <form onSubmit={handleSubmit}>
 		<Container component="main" maxWidth="xs">
-      <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-      >
+   
       <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
         <LockOutlinedIcon />
       </Avatar>
@@ -37,6 +53,7 @@ const Signin=()=>{
         name="email"
         autoComplete="email"
         autoFocus
+        id="email"
         />
       <TextField
         margin="normal"
@@ -46,19 +63,22 @@ const Signin=()=>{
         fullWidth
         name="password" 
         autoComplete="current-password"
+        id = "password"
         />
+
       <Button type="submit" fullWidth variant="contained"
       sx={{mt:3, mb:2, backgroundColor:"#095580"}}>
         로그인 
       </Button>
       <Grid container direction="row">
         <Grid item>
-          <Link color="#000000" href='#'>회원가입</Link>
+          <Link color="#000000" href='/email/auth'>회원가입</Link>
         </Grid>
       </Grid>
-      </Box>
 		</Container>
+    </form>
+    </div>
 	)
 }
 
-export default Signin
+export default SigninFunction;

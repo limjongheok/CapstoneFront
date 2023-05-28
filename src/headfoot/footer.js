@@ -6,7 +6,7 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ListRoundedIcon from '@mui/icons-material/ListRounded';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 
-function Footer() {
+const Footer =() => {
     // const [value, setValue] = React.useState('recents');
     const [value, setValue] = React.useState(0);
   
@@ -52,4 +52,4 @@ function Footer() {
     );
   }
 
-export default Footer
+export default Footer;

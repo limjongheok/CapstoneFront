@@ -4,9 +4,24 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { emailAuthCheck } from '../../../api/ApiService';
 
-const Emailauthnum=()=>{
+const EmailauthnumFuction=()=>{
+
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const email = data.get("email");
+    const authCode = data.get("authCode");
+    console.log(authCode)
+  
+    // ApiService의 signin 메서드를 사용 해 로그인.
+    emailAuthCheck({ email: email, authCode:authCode});
+  };
 	return(
+    <div id='EmailAuthNumFunction'>
+       <form onSubmit={handleSubmit}>
 		<Container component="main" maxWidth="sm">
       <Box
           sx={{
@@ -27,7 +42,7 @@ const Emailauthnum=()=>{
               margin: "0 auto"
             }}>
 		<TextField 
-        id="standard-email-input"
+        id="email"
         sx={{mb:"24px"}}
         label="학교 이메일" 
         required 
@@ -38,12 +53,12 @@ const Emailauthnum=()=>{
         autoFocus
         />
 		<TextField 
-        id="standard-email-input"
+        id="authCode"
         sx={{mb:"24px"}}
         label="인증 번호" 
         required 
         fullWidth
-        name="number"
+        name="authCode"
         autoComplete="number"
         variant="standard"
         autoFocus
@@ -55,7 +70,9 @@ const Emailauthnum=()=>{
       </Button>
       </Box>
 		</Container>
+    </form>
+    </div>
 	)
 }
 
-export default Emailauthnum
+export default EmailauthnumFuction;
